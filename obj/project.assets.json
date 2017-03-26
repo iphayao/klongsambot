@@ -7088,9 +7088,6 @@
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
-      "files": {
-        "lib/netcoreapp1.1/klongsambot.dll": "C:\\Users\\Phayao\\Source\\Repos\\klongsambot\\bin\\placeholder\\netcoreapp1.1\\klongsambot.dll"
-      },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {}
@@ -7102,7 +7099,8 @@
         "dependencies": {
           "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.1.1"
+            "version": "1.1.1",
+            "autoReferenced": true
           }
         }
       }
