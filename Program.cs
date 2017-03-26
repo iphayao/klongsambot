@@ -31,7 +31,7 @@ namespace klongsambot
 
                 if (!Directory.Exists(resultDir))
                     Directory.CreateDirectory(resultDir);
-                    
+
                 if (File.Exists(resultHTML))
                     File.Delete(resultHTML);
                 
@@ -47,6 +47,7 @@ namespace klongsambot
                     List<HotelInfo> hotelsInfo = GetHotelInfo(resString);
                     foreach (HotelInfo hotelInfo in hotelsInfo) {
                         string result = string.Empty;
+                        result += string.Format("No:        {0}\n", hotelsInfo.IndexOf(hotelInfo) + 1);
                         result += string.Format("ID:        {0}\n", hotelInfo.ID);
                         result += string.Format("RoomID:    {0}\n", hotelInfo.RoomID);
                         result += string.Format("Name:      {0}\n", hotelInfo.Name);
