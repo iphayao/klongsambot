@@ -25,9 +25,13 @@ namespace klongsambot
             string[] cities = {"4064", "9395", "5085"};
             foreach(string city in cities) {
                 item = GenSearchItem(city);
-                string resultHTML = string.Format("{0}\\{1}.htm", Directory.GetCurrentDirectory(), city);
-                string resultTxet = string.Format("{0}\\{1}.txt", Directory.GetCurrentDirectory(), city);
+                string resultDir = string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "result");
+                string resultHTML = string.Format("{0}\\{1}.htm", resultDir, city);
+                string resultTxet = string.Format("{0}\\{1}.txt", resultDir, city);
 
+                if (!Directory.Exists(resultDir))
+                    Directory.CreateDirectory(resultDir);
+                    
                 if (File.Exists(resultHTML))
                     File.Delete(resultHTML);
                 
