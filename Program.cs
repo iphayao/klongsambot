@@ -47,21 +47,20 @@ namespace klongsambot
                     List<HotelInfo> hotelsInfo = GetHotelInfo(resString);
                     foreach (HotelInfo hotelInfo in hotelsInfo) {
                         string result = string.Empty;
-                        result += string.Format("No:        {0}\n", hotelsInfo.IndexOf(hotelInfo) + 1);
-                        result += string.Format("ID:        {0}\n", hotelInfo.ID);
-                        result += string.Format("RoomID:    {0}\n", hotelInfo.RoomID);
-                        result += string.Format("Name:      {0}\n", hotelInfo.Name);
-                        result += string.Format("StarRate:  {0}\n", hotelInfo.StarRate);
-                        result += string.Format("AreaCity:  {0}\n", hotelInfo.AreaCity);
-                        result += string.Format("HighPrice: {0}\n", hotelInfo.HighPrice);
-                        result += "\n";
+                        result += string.Format("{0}\n", "{");
+                        result += string.Format("\t\"No\": \"{0}\"\n"         , hotelsInfo.IndexOf(hotelInfo) + 1);
+                        result += string.Format("\t\"ID\": \"{0}\"\n"         , hotelInfo.ID);
+                        result += string.Format("\t\"RoomID\": \"{0}\"\n"     , hotelInfo.RoomID);
+                        result += string.Format("\t\"Name\": \"{0}\"\n"       , hotelInfo.Name);
+                        result += string.Format("\t\"StarRate\": \"{0}\"\n"   , hotelInfo.StarRate);
+                        result += string.Format("\t\"AreaCity\": \"{0}\"\n"   , hotelInfo.AreaCity);
+                        result += string.Format("\t\"HighPrice\": \"{0}\"\n"  , hotelInfo.HighPrice);
+                        result += string.Format("{0}\n", "},");
                         File.AppendAllText(resultTxet, result);
                     }
 
                 }         
             }
-
-
         }
 
         static private SearchItem GenSearchItem() {
