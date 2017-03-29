@@ -26,18 +26,18 @@ namespace klongsambot
             // 4064  - Singapore
             // 5085  - Tokyo
             // 9590  - Osaka
-            // 1784  - Kyoto
-            // 79849 - Hakone
+            // 1784  - Kyoto ***
+            // 79849 - Hakone ***
             // 9395  - Bangkok
             // 8584  - Pattaya
             // 7401  - Chiang Mai
             // 16056 - Phuket
-            string[] cities = {"4064", "9395", "5085", "9590", "9590", "1784", "79849", "8584", "7401", "16056"};
+            string[] cities = {"4064", "9395", "5085", "9590", "9590", "8584", "7401", "16056"};
             foreach(string city in cities) {
                 item = GenSearchItem(city);
-                string resultDir = string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "result");
-                string resultHTML = string.Format("{0}\\{1}.htm", resultDir, city);
-                string resultTxet = string.Format("{0}\\{1}.txt", resultDir, city);
+                string resultDir = string.Format("{0}//{1}", Directory.GetCurrentDirectory(), "result");
+                string resultHTML = string.Format("{0}//{1}.htm", resultDir, city);
+                string resultTxet = string.Format("{0}//{1}.json", resultDir, city);
 
                 if (!Directory.Exists(resultDir))
                     Directory.CreateDirectory(resultDir);
@@ -58,13 +58,13 @@ namespace klongsambot
                     foreach (HotelInfo hotelInfo in hotelsInfo) {
                         string result = string.Empty;
                         result += string.Format("{0}\n", "{");
-                        result += string.Format("\t\"No\": \"{0}\"\n"         , hotelsInfo.IndexOf(hotelInfo) + 1);
-                        result += string.Format("\t\"ID\": \"{0}\"\n"         , hotelInfo.ID);
-                        result += string.Format("\t\"RoomID\": \"{0}\"\n"     , hotelInfo.RoomID);
-                        result += string.Format("\t\"Name\": \"{0}\"\n"       , hotelInfo.Name);
-                        result += string.Format("\t\"StarRate\": \"{0}\"\n"   , hotelInfo.StarRate);
-                        result += string.Format("\t\"AreaCity\": \"{0}\"\n"   , hotelInfo.AreaCity);
-                        result += string.Format("\t\"HighPrice\": \"{0}\"\n"  , hotelInfo.HighPrice);
+                        result += string.Format("\t\"No\": \"{0}\",\n"         , hotelsInfo.IndexOf(hotelInfo) + 1);
+                        result += string.Format("\t\"ID\": \"{0}\",\n"         , hotelInfo.ID);
+                        result += string.Format("\t\"RoomID\": \"{0}\",\n"     , hotelInfo.RoomID);
+                        result += string.Format("\t\"Name\": \"{0}\",\n"       , hotelInfo.Name);
+                        result += string.Format("\t\"StarRate\": \"{0}\",\n"   , hotelInfo.StarRate);
+                        result += string.Format("\t\"AreaCity\": \"{0}\",\n"   , hotelInfo.AreaCity);
+                        result += string.Format("\t\"HighPrice\": \"{0}\",\n"  , hotelInfo.HighPrice);
                         result += string.Format("{0}\n", "},");
                         File.AppendAllText(resultTxet, result);
                     }
