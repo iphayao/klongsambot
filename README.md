@@ -1,3 +1,1 @@
 # KlongsamBOT
-
-# Happy Birthday "Phayao"

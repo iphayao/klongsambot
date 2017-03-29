@@ -32,7 +32,9 @@ namespace klongsambot
             // 8584  - Pattaya
             // 7401  - Chiang Mai
             // 16056 - Phuket
-            string[] cities = {"4064", "9395", "5085", "9590", "9590", "8584", "7401", "16056"};
+            // 14865 - Krabi
+            // 17198 - Samui
+            string[] cities = {"4064", "9395", "5085", "9590", "9590", "8584", "7401", "16056", "14865", "17198"};
             foreach(string city in cities) {
                 item = GenSearchItem(city);
                 string resultDir = string.Format("{0}//{1}", Directory.GetCurrentDirectory(), "result");
@@ -70,7 +72,6 @@ namespace klongsambot
                     }
 
                 }
-                Thread.Sleep(2000);
             }
         }
 
