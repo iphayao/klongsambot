@@ -34,21 +34,29 @@ namespace klongsambot
             // 16056 - Phuket
             // 14865 - Krabi
             // 17198 - Samui
-            string[] cities = {"4064", "9395", "5085", "9590", "9590", "8584", "7401", "16056", "14865", "17198"};
+            string[] cities = {"4064", "9395", "5085", "9590", "1784", "79849", "9590", "8584", "7401", "16056", "14865", "17198"};
+            //string[] cities = {"1784"};
             foreach(string city in cities) {
                 item = GenSearchItem(city);
                 string resultDir = string.Format("{0}//{1}", Directory.GetCurrentDirectory(), "result");
-                string resultHTML = string.Format("{0}//{1}.htm", resultDir, city);
-                string resultTxet = string.Format("{0}//{1}.json", resultDir, city);
 
-                if (!Directory.Exists(resultDir))
-                    Directory.CreateDirectory(resultDir);
+                string resultHTMLDir = string.Format("{0}//{1}", resultDir, "HTML");
+                string resultJSONDir = string.Format("{0}//{1}", resultDir, "JSON");
+
+                string resultHTML = string.Format("{0}//{1}.htm", resultHTMLDir, city);
+                string resultJSON = string.Format("{0}//{1}.json", resultJSONDir, city);
+
+                if (!Directory.Exists(resultHTMLDir))
+                    Directory.CreateDirectory(resultHTMLDir);
+                
+                if (!Directory.Exists(resultJSONDir))
+                    Directory.CreateDirectory(resultJSONDir);
 
                 if (File.Exists(resultHTML))
                     File.Delete(resultHTML);
                 
-                if (File.Exists(resultTxet))
-                    File.Delete(resultTxet);
+                if (File.Exists(resultJSON))
+                    File.Delete(resultJSON);
 
                 HttpResponseMessage response = await client.GetAsync(string.Format("pages/agoda/default/DestinationSearchResult.aspx?{0}", GenUriParameter(item)));
                 if (response.IsSuccessStatusCode)
@@ -68,9 +76,8 @@ namespace klongsambot
                         result += string.Format("\t\"AreaCity\": \"{0}\",\n"   , hotelInfo.AreaCity);
                         result += string.Format("\t\"HighPrice\": \"{0}\",\n"  , hotelInfo.HighPrice);
                         result += string.Format("{0}\n", "},");
-                        File.AppendAllText(resultTxet, result);
+                        File.AppendAllText(resultJSON, result);
                     }
-
                 }
             }
         }
@@ -80,7 +87,7 @@ namespace klongsambot
 
             item.CityID = "4064";
             item.CheckIn = "2017-04-04";
-            item.CheckOut = "2017-04-15";
+            item.CheckOut = "2017-04-06";
             item.Rooms = "1";
             item.Adults = "2";
             item.Children = "0";
