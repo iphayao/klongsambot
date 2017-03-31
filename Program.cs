@@ -86,8 +86,8 @@ namespace klongsambot
             SearchItem item = new SearchItem();
 
             item.CityID = "4064";
-            item.CheckIn = "2017-04-04";
-            item.CheckOut = "2017-04-06";
+            item.CheckIn = DateTime.Now.ToString("yyyy-MM-dd");
+            item.CheckOut = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
             item.Rooms = "1";
             item.Adults = "2";
             item.Children = "0";
