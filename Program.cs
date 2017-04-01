@@ -35,28 +35,32 @@ namespace klongsambot
             // 14865 - Krabi
             // 17198 - Samui
             string[] cities = {"4064", "9395", "5085", "9590", "1784", "79849", "9590", "8584", "7401", "16056", "14865", "17198"};
+
+            string resultDir = string.Format("{0}//{1}", Directory.GetCurrentDirectory(), "result");
+
+            string resultHTMLDir = string.Format("{0}//{1}", resultDir, "HTML");
+            string resultJSONDir = string.Format("{0}//{1}", resultDir, "JSON");
+
+            
+            string resultJSON = string.Format("{0}//{1}.json", resultJSONDir, "cities");
+
+            if (!Directory.Exists(resultHTMLDir))
+                Directory.CreateDirectory(resultHTMLDir);
+                
+            if (!Directory.Exists(resultJSONDir))
+                Directory.CreateDirectory(resultJSONDir);
+                
+            if (File.Exists(resultJSON))
+                File.Delete(resultJSON);
+
             //string[] cities = {"1784"};
             foreach(string city in cities) {
                 item = GenSearchItem(city);
-                string resultDir = string.Format("{0}//{1}", Directory.GetCurrentDirectory(), "result");
-
-                string resultHTMLDir = string.Format("{0}//{1}", resultDir, "HTML");
-                string resultJSONDir = string.Format("{0}//{1}", resultDir, "JSON");
 
                 string resultHTML = string.Format("{0}//{1}.htm", resultHTMLDir, city);
-                string resultJSON = string.Format("{0}//{1}.json", resultJSONDir, city);
-
-                if (!Directory.Exists(resultHTMLDir))
-                    Directory.CreateDirectory(resultHTMLDir);
-                
-                if (!Directory.Exists(resultJSONDir))
-                    Directory.CreateDirectory(resultJSONDir);
 
                 if (File.Exists(resultHTML))
                     File.Delete(resultHTML);
-                
-                if (File.Exists(resultJSON))
-                    File.Delete(resultJSON);
 
                 HttpResponseMessage response = await client.GetAsync(string.Format("pages/agoda/default/DestinationSearchResult.aspx?{0}", GenUriParameter(item)));
                 if (response.IsSuccessStatusCode)
