@@ -78,6 +78,7 @@ namespace klongsambot
                         result += string.Format("\t\"Name\": \"{0}\",\n"       , hotelInfo.Name);
                         result += string.Format("\t\"StarRate\": \"{0}\",\n"   , hotelInfo.StarRate);
                         result += string.Format("\t\"AreaCity\": \"{0}\",\n"   , hotelInfo.AreaCity);
+                        result += string.Format("\t\"City\": \"{0}\",\n"       , hotelInfo.City);
                         result += string.Format("\t\"HighPrice\": \"{0}\",\n"  , hotelInfo.HighPrice);
                         result += string.Format("{0}\n", "},");
                         File.AppendAllText(resultJSON, result);
@@ -163,7 +164,9 @@ namespace klongsambot
                         // Looking for hotelname
                         hotelInfo.Name = GetElmValue(tagHotelName, data, idx);
                         // Looking for areacity
-                        hotelInfo.AreaCity = GetElmValue(tagAreaCity, data, idx);
+                        string[] cityArea = GetElmValue(tagAreaCity, data, idx).Split(',');
+                        hotelInfo.AreaCity = cityArea[0];
+                        hotelInfo.City = cityArea[1].Trim();
                         // Looking for price
                         hotelInfo.LowPrice = GetElmValue(tagPrice, data, idx);
                         // Looking for high price

@@ -7,6 +7,7 @@ namespace klongsambot
         internal string Name { get; set; }
         internal string StarRate { get; set; }
         internal string AreaCity { get; set; }
+        internal string City { get; set; }
         internal string HighPrice { get; set; }
         internal string LowPrice { get; set; }
     }
